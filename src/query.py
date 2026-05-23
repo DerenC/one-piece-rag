@@ -42,5 +42,3 @@ Answer:"""
     )
 
     return response.choices[0].message.content
-
-print(rag_query(input("Ask me any question about the anime One Piece\n")))
