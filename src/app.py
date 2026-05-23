@@ -31,7 +31,7 @@ for message in st.session_state.messages:
         if message["role"] == "assistant" and message.get("sources"):
             with st.expander("Sources"):
                 for i, source in enumerate(message["sources"]):
-                    st.markdown(f"**Source {i+1}:** {source}")
+                    st.text(f"({i+1})\n" + source)
 
 # Chat input
 if question := st.chat_input("Type your question..."):
@@ -56,4 +56,4 @@ if question := st.chat_input("Type your question..."):
 
         with st.expander("Sources"):
             for i, source in enumerate(sources):
-                st.markdown(f"**Source {i+1}:** {source}")
+                st.text(f"({i+1})\n" + source)
