@@ -1,0 +1,67 @@
+from sentence_transformers import SentenceTransformer
+import faiss
+import numpy as np
+from groq import Groq
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = Groq(
+    api_key=os.environ.get("GROQ_API_KEY"),
+)
+
+# Step 1: Prepare documents
+documents = [
+    "Our refund policy: 30 days, full refund with receipt.",
+    "Shipping takes 3-5 business days for domestic orders.",
+    "We accept Visa, Mastercard, and PayPal.",
+    "Customer support: support@example.com or call 1-800-HELP"
+]
+
+# Step 2: Create embeddings
+model = SentenceTransformer('all-MiniLM-L6-v2')  # 384-dim embeddings
+embeddings = model.encode(documents)
+
+# Step 3: Build FAISS index
+dimension = embeddings.shape[1]
+index = faiss.IndexFlatL2(dimension)
+index.add(np.array(embeddings))
+
+# Step 4: Retrieval function
+def retrieve(query, k=2):
+    query_embedding = model.encode([query])
+    distances, indices = index.search(query_embedding, k)
+    return [documents[i] for i in indices[0]], distances[0]
+
+# Step 5: RAG function
+def rag_query(question):
+    # Retrieve relevant docs
+    context, distances = retrieve(question)
+
+    ## FOR DEBUGGING
+    for i, sentence in enumerate(context):
+        print(sentence)
+        print(f"Distance: {distances[i]}")
+
+    # Create prompt
+    prompt = f"""Answer the question based only on this context:
+
+Context:
+{chr(10).join(context)}
+
+Question: {question}
+
+Answer:"""
+
+    # Generate response
+    response = client.chat.completions.create(
+        model="openai/gpt-oss-20b",
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    return response.choices[0].message.content
+
+# Test it
+print(rag_query("How long does shipping take?"))
+# Output: "Shipping takes 3-5 business days for domestic orders."
