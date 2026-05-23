@@ -27,6 +27,11 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
+        if message["role"] == "assistant" and message.get("sources"):
+            with st.expander("Sources"):
+                for i, source in enumerate(message["sources"]):
+                    st.markdown(f"**Source {i+1}:** {source}")
+
 # Chat input
 if question := st.chat_input("Type your question..."):
     # Store and display user message
@@ -37,13 +42,16 @@ if question := st.chat_input("Type your question..."):
     with st.chat_message("user"):
         st.markdown(question)
 
-    # Dummy chatbot response
-    response = rag_query(question)
+    response, sources = rag_query(question)
 
     # Store and display assistant response
     st.session_state.messages.append(
-        {"role": "assistant", "content": response}
+        {"role": "assistant", "content": response, "sources": sources}
     )
 
     with st.chat_message("assistant"):
         st.markdown(response)
+
+        with st.expander("Sources"):
+            for i, source in enumerate(sources):
+                st.markdown(f"**Source {i+1}:** {source}")
