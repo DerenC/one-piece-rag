@@ -5,6 +5,16 @@ from dotenv import load_dotenv
 import emb_model
 from chroma_db import collection
 
+CHOSEN_GROQ_MODEL = "qwen/qwen3-32b"
+CHOSEN_GROQ_MODEL = "groq/compound"
+CHOSEN_GROQ_MODEL = "groq/compound-mini"
+CHOSEN_GROQ_MODEL = "openai/gpt-oss-20b"
+CHOSEN_GROQ_MODEL = "openai/gpt-oss-120b"
+CHOSEN_GROQ_MODEL = "openai/gpt-oss-safeguard-20b"
+CHOSEN_GROQ_MODEL = "llama-3.3-70b-versatile"
+CHOSEN_GROQ_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
+CHOSEN_GROQ_MODEL = "llama-3.1-8b-instant"
+
 load_dotenv()
 
 groq_client = Groq(
@@ -37,7 +47,7 @@ Answer:"""
 
     # Generate response
     response = groq_client.chat.completions.create(
-        model="openai/gpt-oss-20b",
+        model=CHOSEN_GROQ_MODEL,
         messages=[{"role": "user", "content": prompt}]
     )
 
