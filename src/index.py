@@ -1,5 +1,5 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from emb_model import emb_model
+import emb_model
 from chroma_db import collection
 import os
 

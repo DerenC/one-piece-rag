@@ -2,7 +2,7 @@ from groq import Groq
 import os
 from dotenv import load_dotenv
 
-from emb_model import emb_model
+import emb_model
 from chroma_db import collection
 
 load_dotenv()
