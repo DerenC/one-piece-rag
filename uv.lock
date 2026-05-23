@@ -2603,7 +2603,7 @@ wheels = [
 ]
 
 [[package]]
-name = "rag-from-zero-to-hero"
+name = "one-piece-rag"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
