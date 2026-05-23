@@ -5,5 +5,6 @@ reranker = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
 
 def rerank(query, candidates, k=10):
     scores = reranker.predict([(query, doc) for doc in candidates])
-    reranked = [candidates[i] for i in np.argsort(scores)[-k:]]
+    top_k = np.argsort(scores)[-k:]
+    reranked = [candidates[i] for i in top_k[np.argsort(-scores[top_k])]]
     return reranked
