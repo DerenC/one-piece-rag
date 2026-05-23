@@ -2,7 +2,8 @@ import streamlit as st
 
 from query import rag_query
 
-# Page configuration
+NUM_OF_SOURCES_DISPLAYED = 5
+
 st.set_page_config(
     page_title="OnePieceGPT",
     page_icon="☠️",
@@ -43,6 +44,7 @@ if question := st.chat_input("Type your question..."):
         st.markdown(question)
 
     response, sources = rag_query(question)
+    sources = sources[:NUM_OF_SOURCES_DISPLAYED]
 
     # Store and display assistant response
     st.session_state.messages.append(
