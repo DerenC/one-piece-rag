@@ -2,8 +2,7 @@ from groq import Groq
 import os
 from dotenv import load_dotenv
 
-import emb_model
-from chroma_db import collection
+import chroma_db
 
 CHOSEN_GROQ_MODEL = "qwen/qwen3-32b"
 CHOSEN_GROQ_MODEL = "groq/compound"
@@ -21,19 +20,9 @@ groq_client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
 )
 
-def retrieve(query, k=100):
-    query_embedding = emb_model.encode([query])
-    results = collection.query(
-        query_embeddings=query_embedding.tolist(),
-        n_results=100
-    )
-    if results is None or results.get("documents") is None: return ["No relevant reference is found"]
-
-    return [doc for sublist in results.get("documents") for doc in sublist] # type: ignore
-
 def rag_query(question):
     # Retrieve relevant docs
-    context = retrieve(question)
+    context = chroma_db.retrieve(question)
 
     # Create prompt
     prompt = f"""Answer the question based only on this context:
