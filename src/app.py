@@ -4,7 +4,7 @@ from query import rag_query
 
 # Page configuration
 st.set_page_config(
-    page_title="One Piece RAG Chat",
+    page_title="OnePieceGPT",
     page_icon="☠️",
     layout="wide",
     initial_sidebar_state="collapsed"  # or "expanded"
@@ -15,7 +15,7 @@ with st.sidebar:
     st.title("")
 
 # Main title
-st.title("☠️ One Piece RAG Chat")
+st.title("☠️ OnePieceGPT")
 st.caption("Ask me anything regarding the anime, One Piece")
 
 # Initialize chat history
