@@ -2,7 +2,9 @@ from groq import Groq
 import os
 from dotenv import load_dotenv
 
+import bm25_ranker
 import chroma_db
+import reranker
 
 CHOSEN_GROQ_MODEL = "qwen/qwen3-32b"
 CHOSEN_GROQ_MODEL = "groq/compound"
@@ -21,14 +23,14 @@ groq_client = Groq(
 )
 
 def rag_query(question):
-    # Retrieve relevant docs
-    context = chroma_db.retrieve(question)
+    source_sentences = chroma_db.retrieve(question)
+    source_sentences = bm25_ranker.rank_n_filter(question, source_sentences)
+    source_sentences = reranker.rerank(question, source_sentences)
 
-    # Create prompt
     prompt = f"""Answer the question based only on this context:
 
 Context:
-{chr(10).join(context)}
+{chr(10).join(source_sentences)}
 
 Question: {question}
 
