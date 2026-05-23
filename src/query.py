@@ -9,11 +9,11 @@ CHOSEN_GROQ_MODEL = "qwen/qwen3-32b"
 CHOSEN_GROQ_MODEL = "groq/compound"
 CHOSEN_GROQ_MODEL = "groq/compound-mini"
 CHOSEN_GROQ_MODEL = "openai/gpt-oss-20b"
-CHOSEN_GROQ_MODEL = "openai/gpt-oss-120b"
 CHOSEN_GROQ_MODEL = "openai/gpt-oss-safeguard-20b"
-CHOSEN_GROQ_MODEL = "llama-3.3-70b-versatile"
 CHOSEN_GROQ_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 CHOSEN_GROQ_MODEL = "llama-3.1-8b-instant"
+CHOSEN_GROQ_MODEL = "llama-3.3-70b-versatile"
+CHOSEN_GROQ_MODEL = "openai/gpt-oss-120b"
 
 load_dotenv()
 
