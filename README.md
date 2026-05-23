@@ -31,3 +31,7 @@ python3 src/query.py
 ```
 
 Key in the question you want to ask into the terminal. And voilà!
+
+## Possible future extensions
+
+- Explore different embedding models under `chromadb.utils.embedding_functions`
