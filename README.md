@@ -30,6 +30,12 @@ As ChromaDB PersistentClient is used, a directory named "chromadb_data". The who
 uv run python src/terminal_app.py
 ```
 
+## Alternatively, run the streamlit app
+
+```bash
+uv run streamlit run src/app.py
+```
+
 Key in the question you want to ask into the terminal. And voilà!
 
 ## Possible future improvements
