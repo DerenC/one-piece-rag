@@ -2,9 +2,9 @@ from groq import Groq
 import os
 from dotenv import load_dotenv
 
-import bm25_ranker
-import chroma_db
-import reranker
+import services.ranker.bm25_ranker as bm25_ranker
+import services.chroma_db as chroma_db
+import services.ranker.reranker as reranker
 
 CHOSEN_GROQ_MODEL = "qwen/qwen3-32b"
 CHOSEN_GROQ_MODEL = "groq/compound"

@@ -1,7 +1,7 @@
 from rank_bm25 import BM25Okapi
 import numpy as np
 
-from corpus_pickle import create_pkl_if_not_exist, get_corpus_docs
+from services.corpus_pickle import create_pkl_if_not_exist, get_corpus_docs
 
 def rank_n_filter(query, documents, k=50):
     corpus = [doc.split() for doc in documents]

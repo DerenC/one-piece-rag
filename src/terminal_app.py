@@ -1,4 +1,4 @@
-from query import rag_query
+from services.query import rag_query
 
 response, sources = rag_query(input("Ask me any question about the anime One Piece\n"))
 

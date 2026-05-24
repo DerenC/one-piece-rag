@@ -1,6 +1,6 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-import emb_model
-from chroma_db import collection
+import services.emb_model as emb_model
+from services.chroma_db import collection
 import os
 
 splitter = RecursiveCharacterTextSplitter(

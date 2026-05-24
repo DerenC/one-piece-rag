@@ -1,6 +1,6 @@
 import chromadb
 
-import emb_model
+import services.emb_model as emb_model
 
 client = chromadb.PersistentClient(path="./chromadb_data")
 collection = client.get_or_create_collection("dialogue")

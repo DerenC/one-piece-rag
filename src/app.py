@@ -1,6 +1,6 @@
 import streamlit as st
 
-from query import rag_query
+from services.query import rag_query
 
 NUM_OF_SOURCES_DISPLAYED = 5
 
