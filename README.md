@@ -11,7 +11,7 @@ Instructions on setting up the project:
 ## 1. Turn raw csv file data to text files
 
 ```bash
-uv run python src/csv2dialogue.py
+uv run python src/setup_scripts/csv2dialogue.py
 ```
 
 All dialogues from each episode will be saved to a single text file under the directory, "data/dialogue". The same dialogue consecutively from the same character will also be concatenated.
@@ -19,7 +19,7 @@ All dialogues from each episode will be saved to a single text file under the di
 ## 2. Chunk, Embed and Index all documents in a ChromaDB
 
 ```bash
-uv run python src/index.py
+uv run python src/setup_scripts/index.py
 ```
 
 As ChromaDB PersistentClient is used, a directory named "chromadb_data". The whole database will be setup based on the files in this directory.
