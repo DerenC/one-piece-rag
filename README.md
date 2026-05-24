@@ -46,3 +46,4 @@ Key in the question you want to ask into the terminal. And voilà!
 
 - Explore different embedding models under `chromadb.utils.embedding_functions`
 - Explore the "BAAI/bge-large-en-v1.5" embedding model
+- Research on how to chunk & index csv file, so as to put in one piece character dataset.
